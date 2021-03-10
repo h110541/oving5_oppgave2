@@ -52,6 +52,30 @@ public class DobbelKjedetListeS<T extends Comparable<T>> {
 		antall++;
 	}
 
+	public T fjern(T element) {
+		sjekkVerdi(element);
+
+		T resultat = null;
+		DobbelNode<T> current = forste.getNeste();
+
+		while (element.compareTo(current.getElement()) > 0) {
+			current = current.getNeste();
+		}
+
+		if (element.compareTo(current.getElement()) == 0) {
+			resultat = current.getElement();
+
+			DobbelNode<T> forrige = current.getForrige();
+			DobbelNode<T> neste = current.getNeste();
+			forrige.setNeste(neste);
+			neste.setForrige(forrige);
+
+			antall--;
+		}
+
+		return resultat;
+	}
+
 	// Hjelpemetode, sjekker om en verdi ligger innenfor tillatt område (minVerdi, maksVerdi).
 	// Kaster et unntak dersom verdien er ugyldig.
 	private void sjekkVerdi(T element) {
