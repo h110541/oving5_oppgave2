@@ -76,6 +76,17 @@ public class DobbelKjedetListeS<T extends Comparable<T>> {
 		return resultat;
 	}
 
+	public void visListe() {
+		DobbelNode<T> current = forste.getNeste();
+
+		while (current != siste) {
+			System.out.print(current.getElement() + " ");
+			current = current.getNeste();
+		}
+
+		System.out.println();
+	}
+
 	// Hjelpemetode, sjekker om en verdi ligger innenfor tillatt område (minVerdi, maksVerdi).
 	// Kaster et unntak dersom verdien er ugyldig.
 	private void sjekkVerdi(T element) {
